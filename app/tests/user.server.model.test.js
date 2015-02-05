@@ -45,9 +45,6 @@ describe('User Model Unit Tests:', function() {
 			homeAddress: 'Fake Street 123, 22150 Springfiled, Virginia USA'
 		});
 
-		// Remove old previous data
-		User.remove().exec();
-
 		done();
 	});
 

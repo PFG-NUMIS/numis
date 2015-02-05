@@ -82,7 +82,4 @@ exports.prepareErrorResponse = function(err) {
 	} else if (err.name && errorTypes.indexOf(err.name) === -1) {
 		err.name = 'UnexpectedError';
 	}
-
-	// Return error to use in chaining functions
-	return err;
 };
