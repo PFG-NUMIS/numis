@@ -255,7 +255,7 @@ describe('User CRUD tests', function() {
 
 	it('NU_T_G111_E107: should be able to save User instance but not save role specification', function(done) {
 		// Duplicate username field
-		user2.roles = ['user', 'admin', 'other'];
+		user2.role = 'admin';
 
 		agent.post('/auth/signin')
 			.send(credentials)
@@ -277,6 +277,8 @@ describe('User CRUD tests', function() {
 
 						(userSaveRes.body).should.have.property('name');
 						(userSaveRes.body.username).should.match(user2.username);
+
+						//(userSaveRes.body.role).should.not.match(user2.role);
 
 						// Handle User save error
 						done(userSaveErr);

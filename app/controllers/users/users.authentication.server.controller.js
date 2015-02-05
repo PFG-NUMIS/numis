@@ -14,8 +14,8 @@ var _ = require('lodash'),
  * Signup
  */
 exports.signup = function(req, res) {
-	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
+	// For security measurement we remove the role from the req.body object
+	delete req.body.role;
 
 	// Init Variables
 	var user = new User(req.body);

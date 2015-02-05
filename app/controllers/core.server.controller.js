@@ -16,7 +16,7 @@ exports.index = function(req, res) {
 exports.getApiRootPoint = function(req, res) {
 	var user 		= req.user,
 		apiVersion	= req.apiVersion,
-		isAdmin 	= (user && user.roles && user.roles.indexOf('admin') !== -1),
+		isAdmin 	= (user && user.role && user.role === 'admin'),
 		response	= {};
 
 	if (user === undefined || user._id === undefined) {

@@ -34,7 +34,7 @@ module.exports = function(app) {
 	//restEndpoints.log.verbose(true);
 	new restEndpoints
 				.endpoint('/api/v1/users', 'User', {
-					queryParams: ['username', 'name', 'email', '$in_roles'],
+					queryParams: ['username', 'name', 'email', '$in_role'],
 					pagination: {
 						perPage: 50,
 						sortField: 'username'

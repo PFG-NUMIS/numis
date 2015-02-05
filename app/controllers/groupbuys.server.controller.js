@@ -296,7 +296,7 @@ exports.getManagersList = function(req, res) {
 exports.formattingGroupbuy = function(req, res, next) {
 	var user 	  	 = req.user,
 		groupbuy	 = res,
-		isAdmin   	 = (user && user.roles && user.roles.indexOf('admin') !== -1),
+		isAdmin   	 = (user && user.role && user.role === 'admin'),
 		isMember  	 = (isAdmin || groupbuy.members.indexOf(user._id) !== -1),
 		isManager 	 = (isAdmin || groupbuy.managers.indexOf(user._id) !== -1),
 		showUpdates  = isMember,
@@ -408,7 +408,7 @@ exports.formattingGroupbuy = function(req, res, next) {
 */
 exports.formattingGroupbuyList = function(req, res, next) {
 	var user 	= req.user,
-		isAdmin = (user && user.roles && user.roles.indexOf('admin') !== -1);
+		isAdmin = (user && user.role && user.role === 'admin');
 
 	// Prepare response in JSON+HAL format.
 	var result = {

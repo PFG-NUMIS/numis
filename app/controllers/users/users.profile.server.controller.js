@@ -14,7 +14,7 @@ var _ = require('lodash'),
  */
 exports.formattingUser = function(req, res, next) {
 	var user 	= req.user,
-		isAdmin = (user && user.roles && user.roles.indexOf('admin') !== -1),
+		isAdmin = (user && user.role && user.role === 'admin'),
 		isMe    = (user && user._id.equals(res._id) ),
 		result  = {};
 
@@ -47,10 +47,10 @@ exports.formattingUser = function(req, res, next) {
 			result.firstName 	= res.firstName;
 			result.homeAddress	= res.homeAddress;
 			result.email 		= res.email;
+			result.role 		= res.role;
 		}
 		if (isAdmin) {
 			result.provider = res.provider;
-			result.roles 	= res.roles;
 		}
 	}
 
@@ -63,7 +63,7 @@ exports.formattingUser = function(req, res, next) {
 */
 exports.formattingUserList = function(req, res, next) {
 	var user 	= req.user,
-		isAdmin = (user && user.roles && user.roles.indexOf('admin') !== -1);
+		isAdmin = (user && user.role && user.role === 'admin');
 
 	// Prepare response in JSON+HAL format.
 	var result = {

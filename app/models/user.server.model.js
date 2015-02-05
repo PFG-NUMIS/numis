@@ -86,13 +86,11 @@ var UserSchema = new Schema({
 	additionalProvidersData: {
 		select: false
 	},
-	roles: {
-		type: [{
-			type: String,
-			enum: ['user', 'premium', 'admin']
-		}],
-		default: ['user'],
-		select: false
+	role: {
+		type: String,
+		enum: ['pending', 'user', 'admin'],
+		default: 'user',
+		select: true
 	},
 	updated: {
 		type: Date

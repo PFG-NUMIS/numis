@@ -12,7 +12,7 @@ module.exports = function(app) {
 	 *
 	 */
 	var groupbuyListPreFilter = function(req, query, next) {
-		var isAdmin = (req.user && req.user.roles && req.user.roles.indexOf('admin') !== -1);
+		var isAdmin = (req.user && req.user.role && req.user.role === 'admin');
 
 		if (!isAdmin) {
 			if (req.user) {
