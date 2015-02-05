@@ -224,30 +224,30 @@ describe('User CRUD tests', function() {
 		user2.password = '1234567';
 
 		agent.post('/auth/signin')
-		.send(credentials)
-		.expect(200)
-		.end(function(signinErr, signinRes) {
-			// Handle signin error
-			if (signinErr) done(signinErr);
+			.send(credentials)
+			.expect(200)
+			.end(function(signinErr, signinRes) {
+				// Handle signin error
+				if (signinErr) done(signinErr);
 
-			// Save a new User
-			agent.post('/api/v1/users')
-			.send(user2)
-			.expect(400)
-			.end(function(userSaveErr, userSaveRes) {
-				//console.log('userSaveRes: ', userSaveRes.body);
+				// Save a new User
+				agent.post('/api/v1/users')
+					.send(user2)
+					.expect(400)
+					.end(function(userSaveErr, userSaveRes) {
+						//console.log('userSaveRes: ', userSaveRes.body);
 
-				// Set message assertion
-				(userSaveRes.body).should.be.an.Object.not.be.empty;
-				(userSaveRes.body.name).should.match('ValidationError');
+						// Set message assertion
+						(userSaveRes.body).should.be.an.Object.not.be.empty;
+						(userSaveRes.body.name).should.match('ValidationError');
 
-				(userSaveRes.body).should.have.propertyByPath('errors', 'password', 'message');
-				(userSaveRes.body.errors.password.message).should.match('Password should be longer');
+						(userSaveRes.body).should.have.propertyByPath('errors', 'password', 'message');
+						(userSaveRes.body.errors.password.message).should.match('Password should be longer');
 
-				// Handle User save error
-				done(userSaveErr);
+						// Handle User save error
+						done(userSaveErr);
+					});
 			});
-		});
 	});
 
 	it('NU_T_G111_E107: should be able to save User instance but not save role specification', function(done) {
